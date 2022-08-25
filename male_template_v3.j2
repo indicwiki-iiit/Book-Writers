@@ -1,0 +1,248 @@
+{%- macro infobox( name, usage_name, current_status, birth, late, death, first_story_date, birth_place, birth_district, studies, district_of_study, place_of_study, occupation, place_of_work, awards, well_known_writings, address, phone_number, mail_id, books_list, stories_list) -%}
+  
+  {{ '{{Infobox person\n' }}
+
+		{% if name != '0' %}
+        	| name = {{name}}
+		{%- endif %}
+		{% if usage_name != '0' %}
+        	| other_names = {{usage_name}}
+		{%- endif %}
+			|nationality  = {{'భారత దేశం'}}
+		{% if birth_place != '0' %}
+        	| birth_place = {{birth_place}}
+		{%- endif %}
+		{% if death != '0' %}
+        	| death_date  = {{death}}
+		{%- endif %}
+		{% if birth != '0' %}
+        	| birth_date  = {{birth}}
+		{%- endif %}
+		{% if studies != '0' %}
+        	| education   = {{studies}}
+		{%- endif %}
+		{% if occupation != '0' %}
+        	| occupation  = {{occupation}}
+		{%- endif %}
+		{% if known_for != '0' %}
+        	| known_for  = {{'తెలుగు రచయిత'}}
+		{%- endif %}
+		{% if awards != '0' %}
+        	| awards      = {{awards}}
+		{%- endif %}
+		{% if well_known_writings != '0' %}
+        	| notable_works  = {{well_known_writings}}
+		{%- endif %}
+    {{'}}\n'}}
+
+{%- endmacro -%}
+
+
+{%- macro intro( name, usage_name, current_status, birth, late, death, first_story_date, birth_place, birth_district, studies, district_of_study, place_of_study, occupation, place_of_work, awards, well_known_writings) -%}
+	{%-if name != 'nan' or name != '0' -%}
+	    {{name}}  తెలుగు కధా రచయిత.{{" "}}
+	{%- endif %}
+	
+	{%-if usage_name != 'nan' and usage_name != '0' -%}
+	వీరి వాడుక నామం/కలం పేరు {{usage_name}}.{{" "}}
+	{%- endif %}
+	
+	{%-if current_status != 'nan' and current_status != '0' -%}
+	{{name}} {{current_status}} లో  నివసిస్తున్నారు. {{" "}}
+	{%- endif %}
+	
+	{{ '\n==వ్యక్తిగత జీవితం==\n' }}
+	
+	{%-if birth != 'nan' and birth != '0' -%}
+	 {{name}} జననం {{birth}}.{{" "}}
+	 {%- endif %}
+	 
+	 {%-if first_story_date != 'nan' and first_story_date != '0'  -%}
+	 {{name}} తొలి కథ {{first_story_date}} లో ప్రచురితం అయ్యింది.{{" "}}
+	 {%- endif %}
+	 
+	 {%-if birth_place != 'nan' and birth_place != '0'  -%}
+	{{birth_place}} లో జన్మించారు.{{" "}}
+	{%- endif %}
+	
+	{%-if birth_district != 'nan' and birth_district != '0'  -%}
+	ఇది   {{birth_district}} జిల్లాలో ఉంది.{{" "}}
+	{%- endif %}
+	
+	{%-if studies != 'nan' and studies != '0'  -%}
+	{{name}} {{studies}} పట్టా పొందారు.{{" "}}
+	{%- endif %}
+	
+	{%-if place_of_study != 'nan' and place_of_study != '0'  -%}
+	విద్యాబ్యాసం మొత్తం {{place_of_study}} లో జరిగింది.{{" "}}
+	{%- endif %}
+	
+	
+	{%-if occupation != 'nan' and occupation != '0' -%}
+	 {{name}} వృత్తి రీత్యా {{occupation}}.{{" "}}
+	 {%- endif %}
+	 
+	 {%-if place_of_work != 'nan' and place_of_work != '0' -%}
+	ఉద్యోగం రీత్యా {{place_of_work}} లో నివసించేవారు.{{" "}}
+	{%- endif %}
+	
+	{%-if awards != 'nan' and awards != '0' -%}
+	{{name}} కృషికి {{awards}} పురస్కారం అందినది.{{" "}}	
+	{%- endif %}
+	
+	{%-if well_known_writings != 'nan' and well_known_writings != '0' -%}
+	 {{name}} ప్రసిద్ధ రచనలు {{well_known_writings}}. {{" "}}
+	 {%- endif %}
+{%-endmacro-%}
+
+
+{%- macro study( name, studies, place_of_study)-%} 
+{{ '\n==విద్య==\n' }}
+	
+	{%-if studies != 'nan' and studies != '0'-%}
+	{{name}} చదివింది {{studies}}.{{" "}}
+	{%- endif %}
+	
+	{%-if place_of_study != 'nan'  and place_of_study != '0'-%}
+	విద్యాబ్యాసం అంతా {{place_of_study}} జరిగింది.{{" "}}
+	{%- endif %}
+	
+{%-endmacro-%}
+
+
+{%- macro job( name, studies, occupation, place_of_work)-%}
+{{ '\n==ఉద్యోగం - వృత్తి==\n' }}
+	
+	{%-if studies != 'nan' and studies != '0' -%}
+	 {{name}} చదివింది {{studies}}.{{" "}}
+	{%- endif %}
+	
+	
+	{%-if occupation != 'nan' and occupation != '0' -%}
+	వృత్తి పరంగా {{occupation}}గా {{name}} స్థిరపడ్డారు.{{" "}}
+	{%- endif %}
+	
+	
+	{%-if place_of_work != 'nan' and place_of_work != '0' -%}
+	ఉద్యోగం రీత్యా {{place_of_work}} లో నివసించేవారు.{{" "}}
+	{%- endif %}
+{%-endmacro-%}
+
+
+{%- macro booksTable(items, number)-%}
+
+{{ '\n==పుస్తకాల సమాచారం ==\n' }}
+
+{% if number>0 %}
+	{{ '{| class="wikitable sortable" ' }}
+	{{ '|-' }}
+	{{ '! Book' }}
+	{{ '! Type' }}
+	{{ '! Publishing Date' }}
+	{{ '|-' }}
+{% endif %}
+
+{% for item in items %}
+    {{'|'}} {{item.book}} 
+    {{'|'}} {{item.type}}
+    {{'|'}} {{item.publishing_date}} 
+    {{'|-'}}
+{% endfor %}
+{{ '|}' }}	 
+ {{"\n"}}
+{%-endmacro-%}
+
+
+{%- macro StoriesTable(items, number)-%}
+
+{{ '\n==కథల సమాచారం ==\n' }}
+
+{% if number>0 %}
+	{{ '{| class="wikitable sortable" ' }}
+	{{ '|-' }}
+	{{ '! Story' }}
+	{{ '! Paper' }}
+	{{ '! Paper Duration' }}
+	{{ '! Publishing Date' }}
+	{{ '|-' }}
+{% endif %}
+
+
+{% for item in items %}
+    {{'|'}} {{item.story}} 
+    {{'|'}} {{item.paper}}
+    {{'|'}} {{item.paper_duration}}
+    {{'|'}} {{item.publishing_date}} 
+    {{'|-'}}
+
+{% endfor %}
+{{ '|}' }}	 
+	 
+{{"\n"}}
+{%-endmacro-%}
+
+{%-macro popular_books( name, well_known_writings) -%}
+
+{{ '\n==ప్రసిద్ధ రచనలు==\n' }}
+	
+	{%-if well_known_writings != 'nan' and well_known_writings != '0' -%}
+	{{name}} ప్రసిద్ధ రచనలు {{well_known_writings }}. {{" "}}
+	{%- endif %}
+{%-endmacro-%}
+
+
+{%-macro writer_awards( name, awards)-%}
+
+{{ '\n==పురస్కారాలు, గౌరవాలు, బిరుదులు==\n' }}
+
+	{%-if awards != 'nan' and awards != '0' -%}
+	{{name}}  {{ awards }} అను పురస్కారం అందుకున్నారు.{{" "}}
+	{%- endif %}
+{%-endmacro-%}
+
+{%- macro categories() -%}
+    {%- set line = "[[వర్గం: రచయితలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం: రచనలు]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:పుస్తకాలు ]]\n" -%}
+    {{-line-}}
+    {%- set line = "[[వర్గం:కథలు ]]\n" -%}
+    {{-line-}}
+	{%- set line = "[[వర్గం:తెవికీ రచయితలు ]]\n" -%}
+    {{-line-}}
+{%- endmacro -%}
+
+{%- macro references() -%}
+    {{"\n==మూలాలు==\n"}}
+    {%- set line = "1. ఈ వివరములు [ https://kathanilayam.com/story |  ] అనే వెబ్సైటు నుండి సేకరించబడినవి. \n" -%}
+    {{-line-}}
+{%- endmacro -%}
+
+
+
+{#- Article written from here -#}
+
+{{ infobox( name, usage_name, current_status, birth, late, death, first_story_date, birth_place, birth_district, studies, district_of_study, place_of_study, occupation, place_of_work, awards, well_known_writings, address, phone_number, mail_id, books_list, stories_list) }}
+{{ intro( name, usage_name, current_status, birth, late, death, first_story_date, birth_place, birth_district, studies, district_of_study, place_of_study, occupation, place_of_work, awards, well_known_writings) }}
+{{ study( name, studies, place_of_study) }}
+{{ job( name, studies, occupation, place_of_work) }}
+{{ popular_books( name, well_known_writings) }}
+{{ writer_awards( name, awards) }}
+{{ StoriesTable( stories_list, stories_count) }}
+{{ booksTable( books_list, books_count) }}
+{{ categories() }}
+{{ references() }}
+
+
+
+
+
+
+
+
+
+
+
+
+
